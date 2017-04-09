@@ -25,8 +25,9 @@ var vm = new Vue({
             this.showModal = true;
         },
         fight: function (data) {
-
-
+            if (this.user.hp < 0 || this.empty.hp < 0) {
+                return false;
+            }
             if (this.even) {
                 this.atk(this.user, this.empty, true);
                 this.atk(this.empty, this.user, false);
