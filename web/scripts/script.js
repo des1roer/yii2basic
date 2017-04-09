@@ -66,7 +66,7 @@ var vm = new Vue({
                 nick = e_nick, e_nick = buf;
             }
 
-            var dmg = Math.round(randomInteger(0.9, 1.1) * user_.atk);
+            var dmg = Math.round(random(0.9, 1.1) * user_.atk);
             empty_.hp -= dmg;
             this.loger += '<div>' + e_nick + empty_.hp + ' - ' + dmg + '</div>';
 
@@ -78,10 +78,8 @@ var vm = new Vue({
     }
 })
 
-
-function randomInteger(min, max) {
+function random(min, max) {
     var rand = min + Math.random() * (max - min)
-    //rand = Math.round(rand * 100);
     return rand;
 }
 
