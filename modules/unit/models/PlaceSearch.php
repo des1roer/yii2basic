@@ -5,12 +5,12 @@ namespace app\modules\unit\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\unit\models\Unit;
+use app\modules\unit\models\Place;
 
 /**
- * UnitSearch represents the model behind the search form about `app\modules\unit\models\Unit`.
+ * PlaceSearch represents the model behind the search form about `app\modules\unit\models\Place`.
  */
-class UnitSearch extends Unit
+class PlaceSearch extends Place
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class UnitSearch extends Unit
     public function rules()
     {
         return [
-            [['id', 'lvl'], 'integer'],
-            [['name', 'img', 'hp', 'atk'], 'safe'],
+            [['id'], 'integer'],
+            [['comm'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class UnitSearch extends Unit
      */
     public function search($params)
     {
-        $query = Unit::find();
+        $query = Place::find();
 
         // add conditions that should always apply here
 
@@ -60,13 +60,9 @@ class UnitSearch extends Unit
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'lvl' => $this->lvl,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'img', $this->img])
-            ->andFilterWhere(['like', 'hp', $this->hp])
-            ->andFilterWhere(['like', 'atk', $this->atk]);
+        $query->andFilterWhere(['like', 'comm', $this->comm]);
 
         return $dataProvider;
     }

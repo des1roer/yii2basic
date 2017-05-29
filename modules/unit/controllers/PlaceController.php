@@ -3,16 +3,16 @@
 namespace app\modules\unit\controllers;
 
 use Yii;
-use app\modules\unit\models\Unit;
-use app\modules\unit\models\UnitSearch;
+use app\modules\unit\models\Place;
+use app\modules\unit\models\PlaceSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * UnitController implements the CRUD actions for Unit model.
+ * PlaceController implements the CRUD actions for Place model.
  */
-class UnitController extends Controller
+class PlaceController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class UnitController extends Controller
     }
 
     /**
-     * Lists all Unit models.
+     * Lists all Place models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new UnitSearch();
+        $searchModel = new PlaceSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class UnitController extends Controller
     }
 
     /**
-     * Displays a single Unit model.
+     * Displays a single Place model.
      * @param string $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class UnitController extends Controller
     }
 
     /**
-     * Creates a new Unit model.
+     * Creates a new Place model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Unit();
+        $model = new Place();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class UnitController extends Controller
     }
 
     /**
-     * Updates an existing Unit model.
+     * Updates an existing Place model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -94,7 +94,7 @@ class UnitController extends Controller
     }
 
     /**
-     * Deletes an existing Unit model.
+     * Deletes an existing Place model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -107,15 +107,15 @@ class UnitController extends Controller
     }
 
     /**
-     * Finds the Unit model based on its primary key value.
+     * Finds the Place model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return Unit the loaded model
+     * @return Place the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Unit::findOne($id)) !== null) {
+        if (($model = Place::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

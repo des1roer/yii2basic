@@ -3,14 +3,18 @@
 namespace app\modules\unit\models;
 
 use Yii;
-use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "unit".
  *
- * @property integer $id
+ * @property string $id
  * @property string $name
  * @property string $img
+ * @property string $hp
+ * @property string $atk
+ * @property integer $lvl
+ *
+ * @property GamerHasUnit[] $gamerHasUnits
  */
 class Unit extends \yii\db\ActiveRecord {
 
@@ -27,8 +31,12 @@ class Unit extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['name'], 'required'],
-            [['name', 'img'], 'string', 'max' => 255],
-            [['img'], 'file', 'extensions' => 'png, jpg'],
+            [['lvl'], 'integer'],
+            ['hp', 'default', 'value' => 1000],
+            ['atk', 'default', 'value' => 100],
+            ['lvl', 'default', 'value' => 0],
+            [['name', 'img', 'hp', 'atk'], 'string', 'max' => 45],
+          
         ];
     }
 
@@ -40,11 +48,21 @@ class Unit extends \yii\db\ActiveRecord {
             'id' => 'ID',
             'name' => 'Name',
             'img' => 'Img',
+            'hp' => 'Hp',
+            'atk' => 'Atk',
+            'lvl' => 'Lvl',
         ];
     }
 
-    public function getImageurl($data = null) {
-        return \Yii::$app->request->BaseUrl . '/uploads/' . $data;
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGamerHasUnits() {
+        return $this->hasMany(GamerHasUnit::className(), ['unit_id' => 'id']);
     }
+
+
+
+
 
 }

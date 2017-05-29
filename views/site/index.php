@@ -21,6 +21,7 @@ $this->registerCssFile(
 //    'media' => 'print',
 //], 'css-print-theme');
 ?>
+<script src="https://cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js"></script>
 <div class="site-index">
 
         <script type="text/x-template" id="modal-template">
@@ -54,39 +55,39 @@ $this->registerCssFile(
            </div>
          </transition>
        </script>
-    <div id="app">   
-        <modal v-show="showModal" @close="showModal = false">
-            <div slot="header">           
-            </div>
-            <div slot="body">
-            </div>
-            <div slot="footer">
-                <button class="btn btn-danger" @click="showModal = false">
-                    Close
-                </button>
-            </div>
-        </modal>
-        <button class="btn btn-danger" @click="showModal = true">
-            Open
-        </button>
-        
-            <div v-for="(data, key, i) in user">
-                {{ key}} {{ data}}
-              </div>
-        <hr/>
-         <div v-for="(data, key, i) in empty">
-                {{ key}} {{ data}}
-              </div>
-        <hr>
-        <!--<div style="clear:both">{{loger}}</div>-->
-        <p v-html="loger"></p>
-          <button class="btn btn-success" @click="fight()">
-                    Fight
-                </button>
+       <div id="app">   
+           <modal v-show="showModal" @close="showModal = false">
+               <div slot="header">           
+               </div>
+               <div slot="body">
+               </div>
+               <div slot="footer">
+                   <button class="btn btn-danger" @click="showModal = false">
+                       Close
+                   </button>
+               </div>
+           </modal>
+           <button class="btn btn-danger" @click="showModal = true">
+               Open
+           </button>
+
+           <div v-for="(data, key, i) in user">
+               {{ key}} {{ data}}
+           </div>
+           <hr/>
+           <div v-for="(data, key, i) in empty">
+               {{ key}} {{ data}}
+           </div>
+           <hr>
+           <!--<div style="clear:both">{{loger}}</div>-->
+           <p v-html="loger"></p>
+           <button class="btn btn-success" @click="fight()">
+               Fight
+           </button>
            <button class="btn btn-success" onclick="location.reload()">
-                    Reload
-                </button>
-    </div>     
+               Reload
+           </button>
+       </div>     
   
        
 </div>

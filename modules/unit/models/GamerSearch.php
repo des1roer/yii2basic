@@ -5,12 +5,12 @@ namespace app\modules\unit\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\modules\unit\models\Unit;
+use app\modules\unit\models\Gamer;
 
 /**
- * UnitSearch represents the model behind the search form about `app\modules\unit\models\Unit`.
+ * GamerSearch represents the model behind the search form about `app\modules\unit\models\Gamer`.
  */
-class UnitSearch extends Unit
+class GamerSearch extends Gamer
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class UnitSearch extends Unit
     public function rules()
     {
         return [
-            [['id', 'lvl'], 'integer'],
-            [['name', 'img', 'hp', 'atk'], 'safe'],
+            [['id'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class UnitSearch extends Unit
      */
     public function search($params)
     {
-        $query = Unit::find();
+        $query = Gamer::find();
 
         // add conditions that should always apply here
 
@@ -60,13 +60,9 @@ class UnitSearch extends Unit
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'lvl' => $this->lvl,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'img', $this->img])
-            ->andFilterWhere(['like', 'hp', $this->hp])
-            ->andFilterWhere(['like', 'atk', $this->atk]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }
